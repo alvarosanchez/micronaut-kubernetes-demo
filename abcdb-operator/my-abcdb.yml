@@ -1,0 +1,11 @@
+apiVersion: "examples.micronaut.io/v1"
+kind: AbcDb
+metadata:
+  name: my-abc-db
+  namespace: abcdb
+  labels:
+    app: my-abc-db
+    app.kubernetes.io/name: my-abc-db
+    app.kubernetes.io/version: "0.1"
+spec:
+  message: Hello from a CRD

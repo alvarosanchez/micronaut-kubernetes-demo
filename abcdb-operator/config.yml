@@ -1,0 +1,2 @@
+abcdb:
+  message: Hello from a ConfigMap
