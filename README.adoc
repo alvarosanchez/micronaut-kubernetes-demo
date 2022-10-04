@@ -1,0 +1,8 @@
+= Micronaut Kubernetes Demo
+
+Companion code for the talk https://speakerdeck.com/alvarosanchez/implementing-kubernetes-operators-in-java-with-micronaut[Implementing Kubernetes operators in Java with Micronaut].
+
+It contains 2 projects:
+
+* `abcdb`: a dummy project with the purpose of being managed by a Kubernetes operator.
+* `abcdb-operator`: the actual operator implementation using Micronaut.

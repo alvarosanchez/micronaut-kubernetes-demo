@@ -227,7 +227,7 @@ public class AbcDbOperator implements ResourceReconciler<V1AbcDb> {
 
     private V1Container getContainer(V1AbcDb abcDb) {
         return new V1ContainerBuilder()
-                .withImage("us-phoenix-1.ocir.io/oraclelabs/abcdb:0.1")
+                .withImage("us-phoenix-1.ocir.io/oraclelabs/abcdb:1.0")
                 .withImagePullPolicy(ImagePullPolicy.IfNotPresent.name())
                 .withName(abcDb.getName())
                 .addNewPort()
@@ -267,7 +267,7 @@ public class AbcDbOperator implements ResourceReconciler<V1AbcDb> {
         return Map.of(
                 "app.kubernetes.io/name", abcDb.getName(),
                 "app", abcDb.getName(),
-                "app.kubernetes.io/version", "0.1"
+                "app.kubernetes.io/version", "1.0"
         );
     }
 

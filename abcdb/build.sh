@@ -1,4 +1,4 @@
 #!/usr/bin/env sh
 
-./gradlew dockerBuild
+./gradlew dockerBuildNative
 

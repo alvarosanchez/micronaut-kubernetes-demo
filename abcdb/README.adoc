@@ -1,0 +1,24 @@
+= Micronaut Kubernetes Demo - abc-db
+
+abcdb stands for "A Better Cool Database", and is a dummy project with the purpose of being managed by a Kubernetes
+operator.
+
+== Running locally
+
+----
+./gradlew run
+----
+
+or
+
+----
+./gradlew nativeRun
+----
+
+== Deploy to Kubernetes
+
+Assuming that you have a Kubernetes cluster context setup with `kubectl` working, run:
+
+----
+./build.sh && ./deploy.sh
+----

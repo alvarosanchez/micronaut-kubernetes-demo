@@ -1,0 +1,18 @@
+= Micronaut Kubernetes Demo - abc-db operator
+
+abcdb stands for "A Better Cool Database". This is the operator implementation
+
+== Deploy to Kubernetes
+
+Assuming that you have a Kubernetes cluster context setup with `kubectl` working, run:
+
+----
+kubectl apply -f operator.yml
+./build.sh && ./deploy.sh
+----
+
+== Create an abc-db custom resource
+
+----
+kubectl apply -f my-abcdb.yml
+----
