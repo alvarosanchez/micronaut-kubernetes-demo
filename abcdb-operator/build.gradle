@@ -65,8 +65,8 @@ tasks.withType(DockerBuildImage) {
     images = ["us-phoenix-1.ocir.io/oraclelabs/abcdb-operator:$project.version"]
 }
 
-tasks.withType(Dockerfile) {
-    baseImage = 'openjdk:17-slim'
+tasks.named("dockerfile") {
+    baseImage = 'eclipse-temurin:17-jre'
 }
 
 configurations.all {
