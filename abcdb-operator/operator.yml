@@ -10,7 +10,7 @@ metadata:
   namespace: abcdb
 rules:
   - apiGroups: ["", "apps"]
-    resources: ["services", "endpoints", "configmaps", "secrets", "pods", "deployments"]
+    resources: ["services", "endpoints", "endpointslices", "configmaps", "secrets", "pods", "deployments"]
     verbs: ["get", "watch", "list", "create", "delete", "update"]
   - apiGroups: ["coordination.k8s.io"]
     resources: ["leases"]

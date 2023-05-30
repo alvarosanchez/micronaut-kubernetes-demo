@@ -18,7 +18,7 @@ import static io.micronaut.examples.Application.NAME;
     imagePullPolicy = ImagePullPolicy.Always,
     serviceType = ServiceType.LoadBalancer
 )
-@DockerBuild(registry="us-phoenix-1.ocir.io", group = "oraclelabs", name = NAME)
+@DockerBuild(group = "alvarosanchez", name = NAME)
 public class Application {
 
     public static final String NAME = "abcdb";

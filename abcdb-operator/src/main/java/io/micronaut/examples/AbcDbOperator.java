@@ -227,7 +227,7 @@ public class AbcDbOperator implements ResourceReconciler<V1AbcDb> {
 
     private V1Container getContainer(V1AbcDb abcDb) {
         return new V1ContainerBuilder()
-                .withImage("us-phoenix-1.ocir.io/oraclelabs/abcdb:1.0")
+                .withImage("alvarosanchez/abcdb:1.0")
                 .withImagePullPolicy(ImagePullPolicy.IfNotPresent.name())
                 .withName(abcDb.getName())
                 .addNewPort()

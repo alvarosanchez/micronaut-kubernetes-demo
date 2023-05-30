@@ -3,9 +3,6 @@ package io.micronaut.examples;
 import io.dekorate.docker.annotation.DockerBuild;
 import io.dekorate.kubernetes.annotation.ImagePullPolicy;
 import io.dekorate.kubernetes.annotation.ServiceType;
-import io.kubernetes.client.util.ModelMapper;
-import io.micronaut.examples.models.V1AbcDb;
-import io.micronaut.examples.models.V1AbcDbList;
 import io.micronaut.runtime.Micronaut;
 import io.dekorate.kubernetes.annotation.KubernetesApplication;
 import io.dekorate.kubernetes.annotation.Label;
@@ -21,7 +18,7 @@ import static io.micronaut.examples.Application.NAME;
         imagePullPolicy = ImagePullPolicy.IfNotPresent,
         serviceType = ServiceType.ClusterIP
 )
-@DockerBuild(registry="us-phoenix-1.ocir.io", group = "oraclelabs", name = NAME)
+@DockerBuild(group = "alvarosanchez", name = NAME)
 public class Application {
 
     public static final String NAME = "abcdb-operator";
