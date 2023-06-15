@@ -97,15 +97,15 @@ public class AbcDbOperator implements ResourceReconciler<V1AbcDb> {
                     .endMetadata()
                     .withData(Map.of(CONFIG_YML, configMapMessage(abcDb)))
                     .build();
-            coreApi.createNamespacedConfigMap(V1AbcDb.NAMESPACE, configMap, null, null, null);
+            coreApi.createNamespacedConfigMap(V1AbcDb.NAMESPACE, configMap, null, null, null, null);
             LOG.info("Created configMap {}", configMap.getMetadata().getName());
             return 1;
         } else {
-            configMap = coreApi.readNamespacedConfigMap(abcDb.getName(), V1AbcDb.NAMESPACE, null, null, null);
+            configMap = coreApi.readNamespacedConfigMap(abcDb.getName(), V1AbcDb.NAMESPACE, null);
             String existingMessage = configMap.getData().get(CONFIG_YML);
             if (!existingMessage.equals(configMapMessage(abcDb))) {
                 configMap.setData(Map.of(CONFIG_YML, configMapMessage(abcDb)));
-                coreApi.replaceNamespacedConfigMap(abcDb.getName(), V1AbcDb.NAMESPACE, configMap, null, null, null);
+                coreApi.replaceNamespacedConfigMap(abcDb.getName(), V1AbcDb.NAMESPACE, configMap, null, null, null, null);
                 LOG.info("Replaced configMap {}", configMap.getMetadata().getName());
                 return 1;
             }
@@ -183,7 +183,7 @@ public class AbcDbOperator implements ResourceReconciler<V1AbcDb> {
                     .endSpec()
                     .build();
 
-            coreApi.createNamespacedService(V1AbcDb.NAMESPACE, service, null, null, null);
+            coreApi.createNamespacedService(V1AbcDb.NAMESPACE, service, null, null, null, null);
             LOG.info("Created service {}", service.getMetadata().getName());
             return 1;
         } else {
@@ -217,7 +217,7 @@ public class AbcDbOperator implements ResourceReconciler<V1AbcDb> {
                     .endSpec()
                     .build();
 
-            appsApi.createNamespacedDeployment(V1AbcDb.NAMESPACE, deployment, null, null, null);
+            appsApi.createNamespacedDeployment(V1AbcDb.NAMESPACE, deployment, null, null, null, null);
             LOG.info("Created deployment {}", deployment.getMetadata().getName());
             return 1;
         } else {
