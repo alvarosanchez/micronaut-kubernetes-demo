@@ -15,7 +15,7 @@ import static io.micronaut.examples.Application.NAME;
     name = NAME,
     labels = @Label(key = "app", value = APP_NAME),
     ports = @Port(name = "http", containerPort = 8080, hostPort = 8080),
-    imagePullPolicy = ImagePullPolicy.Always,
+    imagePullPolicy = ImagePullPolicy.IfNotPresent,
     serviceType = ServiceType.LoadBalancer
 )
 @DockerBuild(group = "alvarosanchez", name = NAME)
