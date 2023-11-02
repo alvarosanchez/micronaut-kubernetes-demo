@@ -1,16 +1,10 @@
 import com.bmuschko.gradle.docker.tasks.image.DockerBuildImage
 
-buildscript {
-    dependencies {
-        classpath("com.github.docker-java:docker-java-transport-httpclient5:3.3.1") {
-            because("M1 macs need a later version of JNA")
-        }
-    }
-}
 plugins {
-    id("com.github.johnrengelman.shadow") version "7.1.2"
-    id("io.micronaut.application") version "3.7.9"
+    id("com.github.johnrengelman.shadow") version "8.1.1"
+    id("io.micronaut.application") version "4.0.4"
     id("com.google.cloud.tools.jib") version "2.8.0"
+    id("io.micronaut.aot") version "4.0.4"
 }
 
 version = "0.1"
@@ -21,17 +15,18 @@ repositories {
 }
 
 dependencies {
-    annotationProcessor("io.dekorate:kubernetes-annotations")
+    annotationProcessor("io.dekorate:kubernetes-annotations:3.7.6")
     annotationProcessor("io.micronaut:micronaut-http-validation")
-    implementation("io.dekorate:kubernetes-annotations")
+    annotationProcessor("io.micronaut.serde:micronaut-serde-processor")
+    implementation("io.dekorate:kubernetes-annotations:3.7.6")
     implementation("io.micronaut:micronaut-http-client")
-    implementation("io.micronaut:micronaut-jackson-databind")
     implementation("io.micronaut:micronaut-management")
     implementation("io.micronaut.kubernetes:micronaut-kubernetes-operator")
-    implementation("jakarta.annotation:jakarta.annotation-api")
+    implementation("io.micronaut.serde:micronaut-serde-jackson")
+    compileOnly("io.micronaut:micronaut-http-client")
     runtimeOnly("ch.qos.logback:logback-classic")
-    implementation("io.micronaut:micronaut-validation")
-
+    runtimeOnly("org.yaml:snakeyaml")
+    testImplementation("io.micronaut:micronaut-http-client")
 }
 
 
@@ -58,6 +53,17 @@ micronaut {
         incremental(true)
         annotations("io.micronaut.examples.*")
     }
+    aot {
+        // Please review carefully the optimizations enabled below
+        // Check https://micronaut-projects.github.io/micronaut-aot/latest/guide/ for more details
+        optimizeServiceLoading = false
+        convertYamlToJava = false
+        precomputeOperations = true
+        cacheEnvironment = true
+        optimizeClassLoading = true
+        deduceEnvironment = true
+        optimizeNetty = true
+    }
 }
 
 tasks.withType(DockerBuildImage) {
@@ -67,12 +73,3 @@ tasks.withType(DockerBuildImage) {
 tasks.named("dockerfile") {
     baseImage = 'eclipse-temurin:17-jre'
 }
-
-configurations.all {
-    resolutionStrategy.eachDependency { DependencyResolveDetails details ->
-        if (details.requested.group == 'io.dekorate') {
-            details.useVersion "3.0.0"
-        }
-    }
-}
-
