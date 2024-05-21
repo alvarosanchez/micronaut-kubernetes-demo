@@ -15,5 +15,6 @@
 
     <logger name="io.kubernetes" level="debug" />
     <logger name="io.micronaut.kubernetes" level="debug" />
+    <logger name="io.micronaut.kubernetes.client" level="info" />
     <logger name="io.kubernetes.client.informer.ResyncRunnable" level="error" />
 </configuration>

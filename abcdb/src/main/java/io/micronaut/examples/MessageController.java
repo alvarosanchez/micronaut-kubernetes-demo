@@ -23,9 +23,9 @@ public class MessageController {
     public String getMessage() {
         String textToAppend;
         if (environment.getActiveNames().contains(Environment.KUBERNETES)) {
-            textToAppend = " running in a Kubernetes cluster";
+            textToAppend = " running in a Kubernetes cluster" + System.lineSeparator();
         } else {
-            textToAppend = " running outside Kubernetes";
+            textToAppend = " running outside Kubernetes" + System.lineSeparator();
         }
         return message + textToAppend;
     }

@@ -15,6 +15,8 @@ or
 ./gradlew nativeRun
 ----
 
+Then, access `http://localhost:8080/` to see the response.
+
 == Deploy to Kubernetes
 
 Assuming that you have a Kubernetes cluster context setup with `kubectl` working, run:
